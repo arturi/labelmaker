@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Label Maker Editor</title>
+    <style>
+      * {-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
+
+      body {
+        font-family: sans-serif;
+      }
+
+      input[type="text"] {
+        display: block;
+        width: 100%;
+        font-size: 1.3em;
+        margin-top: 30px;
+        margin-bottom: 40px;
+        outline: none;
+        padding: .7em;
+      }
+
+      img {
+        max-width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="max-width: 1000px; margin: auto;">
+      <h1>Tag your image</h1>
+      <input type="text" placeholder="http://" class="imgSrcInput">
+      <div class="imgContainer"></div>
+      <h4>var labelmakerPoints = [</h4>
+      <ul class="imgTagPointsList"></ul>
+      <h4>];</h4>
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        var imgWidth, imgHeight;
+
+        $('.imgSrcInput').on('input', function() {
+          var imgSrc = $(this).val();
+          loadImg(imgSrc);
+        });
+
+        function loadImg(imgSrc) {
+          $('.imgContainer').append('<img src="' + imgSrc + '">');
+          $('img').one('load', function() {
+            imgWidth  = $(this).width();
+            imgHeight = $(this).height();
+
+            $('img').click(function(e) {
+              console.log('12');
+              var posX = e.pageX - this.offsetLeft;
+              var posY = e.pageY - this.offsetTop;
+
+              var left = (posX / imgWidth * 100).toFixed(2);
+              var top = (posY / imgHeight * 100).toFixed(2);
+              var text = prompt("Please enter bubble text", "Hello");
+
+              if (text) {
+                var listElem = {};
+                listElem.left = left;
+                listElem.top = top;
+                listElem.text = text;
+                $('.imgTagPointsList').append(JSON.stringify(listElem) + ',');
+              }
+            });
+
+          }).each(function() {
+            if(this.complete) $(this).load();
+          });
+        }
+
+      });
+    </script>
+  </body>
+</html>

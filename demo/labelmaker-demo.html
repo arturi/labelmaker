@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Labelmaker Demo</title>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
+    <style>
+       * {
+         box-sizing: border-box;
+         -webkit-box-sizing: border-box;
+       }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Raleway', sans-serif;
+        font-size: 16px;
+      }
+
+      img {
+        max-width: 100%; height: auto;
+      }
+
+      .narrow {
+        display: block;
+        max-width: 1000px;
+        margin: auto;
+        padding-left: .8em;
+        padding-right: .8em;
+        margin-top: 1em;
+        margin-bottom: 2em;
+      }
+
+      .wide {
+        display: block;
+        max-width: 100%;
+        margin-top: 1em;
+        margin-bottom: 2em;
+      }
+
+      h1 {
+        text-align: center;
+        font-weight: normal;
+        line-height: 1.3;
+        max-width: 800px;
+        margin: auto;
+        margin-top: 1em;
+      }
+
+      h2 {
+        margin-top: 3em;
+        margin-bottom: 1em;
+        font-weight: normal;
+      }
+
+      p {
+        line-height: 1.5;
+      }
+
+      blockquote {
+        display: block;
+        font-style: italic;
+        line-height: 1.5;
+        padding-left: 45vw;
+        margin: 0;
+        margin-top: 2em;
+        margin-bottom: 3em;
+      }
+
+      blockquote em {
+        display: block;
+        font-size: .7em;
+        margin-top: .5em;
+      }
+
+      .info {
+        font-size: .9em;
+        line-height: 1.5;
+      }
+
+      .info a {
+        color: rgb(102, 102, 102);
+        border-bottom: rgba(102, 102, 102, 0.77);
+      }
+    </style>
+    </head>
+  <body>
+    <div class="narrow">
+      <h1>Introducing the Labelmaker — a jQuery plugin that allows you to put fancy labels on your images</h2>
+      <blockquote>
+        “Everything in his apartment has a label on it. Including his label maker, which has a label that says label maker. And if you look really close at that label maker label, you’ll see a label that says label.”<br>
+        <em style="display: block; text-align: right; font-size: .8em;">— The Big Bang Theory</em>
+      </blockquote>
+    </div>
+
+      <div class="narrow">
+        <h2>All kinds of transportation</h2>
+      </div>
+      <div class="wide">
+        <img src="IMG_5885.JPG" class="labelmaker-1">
+        <ul class="labelmaker-points-1">
+          <li data-left="5" data-top="5">Helicopter (belive me, it’s out there)</li>
+          <li data-left="18" data-top="77">Taxi</li>
+          <li data-left="66" data-top="76">Bike</li>
+          <li data-left="45" data-top="77">Running</li>
+          <li data-left="87" data-top="77">Pedestrian</li>
+        </ul>
+        <div class="narrow">
+          <p>Click the white dots to see comments</p>
+        </div>
+      </div>
+      </div>
+
+      <div class="narrow">
+        <h2>All you need to open a hip coffee place</h2>
+        <img src="IMG_3698.jpg" width="400px" class="labelmaker-2">
+        <ul class="labelmaker-points-2">
+          <li data-left="24" data-top="70">Fancy gear: V60, Kalita, Chemex, Siphon and AeroPress.</li>
+          <li data-left="20" data-top="50">Retro kettle with a curved spout</li>
+          <li data-left="43" data-top="32">Bushy beard</li>
+          <li data-left="40" data-top="45">A flannel shirt from the coolest thrift store in the neighbourhood</li>
+          <li data-left="30" data-top="15">Crazy menu</li>
+          <li data-left="60" data-top="17">Green unroasted coffee beans on the shelf</li>
+          <li data-left="63" data-top="70">Square register for payments (or any other cool looking white equivalent)</li>
+          <li data-left="95" data-top="75">A tip jar with some cash</li>
+        </ul>
+        <p>Adapts to small screens</p>
+      </div>
+
+      <div class="narrow">
+        <h2>Breakfast in Paris</h2>
+        <img src="IMG_1707.jpg" class="labelmaker-3">
+        <ul class="labelmaker-points-3">
+          <li data-left="19" data-top="77">La Domeliere Rasteau, 2013. Hopefully, my French fridnds won’t make fun of me for picking this one.</li>
+          <li data-left="30" data-top="11">Fresh baguette from a local boulangerie</li>
+          <li data-left="80" data-top="80">Orange juice</li>
+          <li data-left="75" data-top="7">Some pudding for desert</li>
+          <li data-left="80" data-top="45">Yummy peaches</li>
+          <li data-left="40" data-top="40">Fresh croissant. Mmmm!</li>
+          <li data-left="45" data-top="70">Retro knife</li>
+          <li data-left="35" data-top="60">Cheese brie</li>
+          <li data-left="20" data-top="50">Chestnut Jam</li>
+        </ul>
+        <p>With an option to show bubbles on hover instead of click</p>
+      </div>
+
+      <div class="info narrow">
+        View on <a href="/">Github</a>. Made by <a href="http://arturpaikin.com">Artur Paikin</a>. Special thanks for math and testing to <a href="http:/elenazaharova.com">Elena Zaharova</a>.
+      </div>
+
+    <link href="../dist/labelmaker.min.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="../dist/jquery.labelmaker.min.js"></script>
+    <script>
+      $('.labelmaker-1').labelmaker($('.labelmaker-points-1'));
+      $('.labelmaker-2').labelmaker($('.labelmaker-points-2'));
+      $('.labelmaker-3').labelmaker($('.labelmaker-points-3'), {showBubbleOn: 'hover'});
+    </script>
+
+  </body>
+</html>
