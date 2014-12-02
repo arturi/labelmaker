@@ -36,9 +36,9 @@ Features:
     ```
 
 ## Settings
-You can choose whether to show comments on click or hover. Click is the default one, if you want hover, then:
+You can choose whether to show comments on click or hover. Click is the default, so if you want hover:
 ```
 <script>
-  $('.labelmaker').labelmaker($('.labelmaker-points’), {showBubbleOn: ‘hover’});
+  $('.labelmaker').labelmaker($('.labelmaker-points’), {showBubbleOn: 'hover'});
 </script>
 ```
