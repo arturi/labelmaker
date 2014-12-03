@@ -146,9 +146,9 @@
         hideAllBubbles($imgContainer);
       });
 
-      $(document).on('keydown', function(e){
-        if (e.keyCode == 27) {
-          hideAllBubbles($imgContainer)
+      $(document).on('keydown', function(e) {
+        if (e.keyCode === 27) {
+          hideAllBubbles($imgContainer);
         }
       });
 
