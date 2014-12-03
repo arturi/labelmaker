@@ -1,7 +1,7 @@
 # Labelmaker
 Labelmaker is a jQuery plugin that allows you to tag your images and add comments with ease.
 
-![labelmaker](demo/labelmaker.jpg)
+[![labelmaker](demo/labelmaker.jpg)](http://arturi.github.io/labelmaker)
 
 Check out [the demo](http://arturi.github.io/labelmaker)!
 
