@@ -25,7 +25,7 @@ Features:
    </ul>
    ```
 4. Add jQuery and Labelmaker, then run Labelmaker, passing the image and the tag data block to it:
-5. 
+
     ```
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="jquery.labelmaker.min.js"></script>
