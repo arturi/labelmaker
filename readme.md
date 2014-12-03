@@ -3,7 +3,7 @@ Labelmaker  is a jQuery plugin that allows you to tag your images and add commen
 
 ![labelmaker](demo/labelmaker.jpg)
 
-Checkout [the demo](http://arturi.github.io/labelmaker)!
+Check out [the demo](http://arturi.github.io/labelmaker)!
 
 Features:
 * Responsive
