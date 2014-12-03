@@ -8,8 +8,8 @@ Check out [the demo](http://arturi.github.io/labelmaker)!
 Features:
 * Responsive
 * Supports links and images in comments
-* Comment bubbles always fit within the image
-* Bubbles scroll inside if the comment is too long 
+* Comment bubbles always fit within the image and scroll inside if the comment is too long
+* Your comments are visible as a list, even when Labelmaker is not available — RSS feeds, read-it-later services, slow connection
 * [An editor](http://arturi.github.io/labelmaker/editor/) to add tags to your image
 
 ## Usage
