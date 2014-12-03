@@ -146,6 +146,12 @@
         hideAllBubbles($imgContainer);
       });
 
+      $(document).on('keydown', function(e){
+        if (e.keyCode == 27) {
+          hideAllBubbles($imgContainer)
+        }
+      });
+
       function actionOnWinowResize() {
         $imgContainer.removeAttr('style');
         imgWidth = $img.width();
