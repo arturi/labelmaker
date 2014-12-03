@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Label Maker Editor</title>
+    <title>Labelmaker Editor</title>
     <style>
       * {-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
 
@@ -28,12 +28,13 @@
   </head>
   <body>
     <div style="max-width: 1000px; margin: auto;">
-      <h1>Tag your image</h1>
+      <h1>Labelmaker editor: tag your image</h1>
       <input type="text" placeholder="http://" class="imgSrcInput">
       <div class="imgContainer"></div>
-      <h4>var labelmakerPoints = [</h4>
-      <ul class="imgTagPointsList"></ul>
-      <h4>];</h4>
+      <h1>Here is you tag point data</h1>
+      <div>&lt;ol class="labelmaker-points"&gt;</div>
+      <div class="imgTagPointsList"></div>
+      <div>&lt;/ol&gt;</div>
     </div>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>
@@ -47,12 +48,11 @@
 
         function loadImg(imgSrc) {
           $('.imgContainer').append('<img src="' + imgSrc + '">');
-          $('img').one('load', function() {
+          $('.imgContainer img').one('load', function() {
             imgWidth  = $(this).width();
             imgHeight = $(this).height();
 
-            $('img').click(function(e) {
-              console.log('12');
+            $('.imgContainer img').click(function(e) {
               var posX = e.pageX - this.offsetLeft;
               var posY = e.pageY - this.offsetTop;
 
@@ -61,11 +61,11 @@
               var text = prompt("Please enter bubble text", "Hello");
 
               if (text) {
-                var listElem = {};
-                listElem.left = left;
-                listElem.top = top;
-                listElem.text = text;
-                $('.imgTagPointsList').append(JSON.stringify(listElem) + ',');
+                var string = '<li data-top="' + top + '" data-left="' + left + '">' + text + '</li>';
+                $('.imgTagPointsList')
+                .append('&nbsp;&nbsp;')
+                .append(document.createTextNode(string))
+                .append('<br>');
               }
             });
 

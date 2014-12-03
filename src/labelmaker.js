@@ -9,7 +9,7 @@
   $.fn.labelmaker = function($pointsContainer, options) {
 
     var settings = $.extend({
-          showBubbleOn: 'click',
+          showOn: 'click',
         }, options);
 
     function getLabelmakerPoints($pointsContainer) {
@@ -18,7 +18,7 @@
         var point = {};
         point.top = $(this).data('top');
         point.left = $(this).data('left');
-        point.text = $(this).text();
+        point.text = $(this).html();
         pointData.push(point);
       });
       return pointData;
@@ -116,15 +116,19 @@
       var labelmakerPoints = getLabelmakerPoints($pointsContainer);
       addPointsAndBubbles($imgContainer, labelmakerPoints);
 
-      if (settings.showBubbleOn === 'hover') {
+      function actionOnPointActive(e, that) {
+        e.stopPropagation();
+        e.preventDefault();
+        hideAllBubbles($imgContainer);
+        $bubble = $(that).next();
+        $point = $(that);
+        showBubble($point, $bubble, imgWidth, imgHeight);
+      }
+
+      if (settings.showOn === 'hover') {
         $imgContainer.on({
-            mouseenter: function(e) {
-                e.stopPropagation();
-                e.preventDefault();
-                hideAllBubbles($imgContainer);
-                $bubble = $(this).next();
-                $point = $(this);
-                showBubble($point, $bubble, imgWidth, imgHeight);
+            'click touchstart mouseenter': function(e) {
+                actionOnPointActive(e, this);
             },
             mouseleave: function(e) {
                 hideAllBubbles($imgContainer);
@@ -132,24 +136,17 @@
         }, '.labelmaker-point');
       } else {
         $imgContainer.on('click touchstart', '.labelmaker-point', function(e) {
-          console.log('click', $(this));
-          e.stopPropagation();
-          e.preventDefault();
-          hideAllBubbles($imgContainer);
-          $bubble = $(this).next();
-          $point = $(this);
-          showBubble($point, $bubble, imgWidth, imgHeight);
-        });
-
-        $imgContainer.on('click touchstart', '.labelmaker-bubble', function(e) {
-          e.stopPropagation();
-        });
-
-        $imgContainer.on('click touchstart', function(e) {
-          console.log('hide all');
-          hideAllBubbles($imgContainer);
+          actionOnPointActive(e, this);
         });
       }
+
+      $imgContainer.on('click touchstart', '.labelmaker-bubble', function(e) {
+        e.stopPropagation();
+      });
+
+      $imgContainer.on('click', function(e) {
+        hideAllBubbles($imgContainer);
+      });
 
       function actionOnWinowResize() {
         $imgContainer.removeAttr('style');

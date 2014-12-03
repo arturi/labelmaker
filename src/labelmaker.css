@@ -95,11 +95,17 @@
   right: 0;
 }
 
+@media (max-width: 1025px) {
+  .labelmaker-point {
+    width: 25px;
+    height: 25px;
+  }
+}
+
 @media (max-width: 600px) {
   .labelmaker-point {
-    width: 16px;
-    height: 16px;
-    border: 2px solid #000;
+    width: 18px;
+    height: 18px;
   }
 
   .labelmaker-bubble-inner,
