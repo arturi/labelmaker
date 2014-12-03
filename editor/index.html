@@ -28,12 +28,17 @@
       .imgContainer {
         cursor: pointer;
       }
+
+      .hidden {
+        opacity: 0;
+      }
     </style>
   </head>
   <body>
     <div style="max-width: 1000px; margin: auto;">
       <h1>Labelmaker editor: tag your image</h1>
       <input type="text" placeholder="http://" class="imgSrcInput">
+      <p class="hidden">Now click on the image to add your points and comments:</p>
       <div class="imgContainer"></div>
       <h1>Here is you tag point data</h1>
       <div>&lt;ol class="labelmaker-points"&gt;</div>
@@ -53,6 +58,7 @@
         function loadImg(imgSrc) {
           $('.imgContainer').append('<img src="' + imgSrc + '">');
           $('.imgContainer img').one('load', function() {
+            $('.imgSrcInput + p').removeClass('hidden');
             imgWidth  = $(this).width();
             imgHeight = $(this).height();
 
