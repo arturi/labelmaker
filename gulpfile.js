@@ -35,7 +35,7 @@ gulp.task('autoprefix-css', function() {
 });
 
 gulp.task('minify-css', ['autoprefix-css'], function() {
-  return gulp.src('./dist/*.css')
+  return gulp.src('./dist/labelmaker.css')
     .pipe(minifyCSS())
     .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest('./dist/'))

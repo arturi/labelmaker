@@ -1,5 +1,7 @@
 /*!
  * Labelmaker
+ * by Artur Paikin, http://arturpaikin.com
+ * https://github.com/arturi/labelmaker
  * MIT License
  */
 
