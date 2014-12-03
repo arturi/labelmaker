@@ -13,15 +13,13 @@
         }, options);
 
     function getLabelmakerPoints($pointsContainer) {
-      var pointData = [];
-      $pointsContainer.children().each(function() {
-        var point = {};
-        point.top = $(this).data('top');
-        point.left = $(this).data('left');
-        point.text = $(this).html();
-        pointData.push(point);
-      });
-      return pointData;
+      return $pointsContainer.children().map(function() {
+        return {
+          top: $(this).data('top'),
+          left: $(this).data('left'),
+          text: $(this).html()
+        }
+      }).toArray();
     }
 
     function addPointsAndBubbles($imgContainer, labelmakerPoints) {
@@ -144,8 +142,14 @@
         e.stopPropagation();
       });
 
-      $imgContainer.on('click', function(e) {
+      $(document).on('click', function(e) {
         hideAllBubbles($imgContainer);
+      });
+
+      $(document).on('keydown', function(e){
+        if (e.keyCode == 27) {
+          hideAllBubbles($imgContainer)
+        }
       });
 
       function actionOnWinowResize() {
