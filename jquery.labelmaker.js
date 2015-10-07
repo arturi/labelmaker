@@ -6,28 +6,45 @@
  */
 
 (function ($) {
+  'use strict';
+
   $.fn.labelmaker = function($pointsContainer, options) {
 
     var settings = $.extend({
           showOn: 'click',
         }, options);
 
-    function getLabelmakerPoints($pointsContainer) {
+    function getPoints() {
       return $pointsContainer.children().map(function() {
         return {
-          top: $(this).data('top'),
-          left: $(this).data('left'),
+          top: parseInt($(this).data('top'), 10),
+          left: parseInt($(this).data('left'), 10),
           text: $(this).html()
         };
-      }).toArray();
+      }).toArray().sort(function(x, y){
+        if (x.top != y.top) {
+          // From top to bottom
+          return x.top - y.top;
+        }
+        else {
+          // and from left to right when top is equal
+          return x.left - y.left;
+        }
+      });
+    }
+
+    function template(point) {
+      var html = '<div class="labelmaker-point" tabindex="1" style="top:' + point.top +'%; left:' + point.left + '%;"></div>';
+      html += '<div class="labelmaker-bubble"><div class="labelmaker-bubble-inner">' + point.text + '</div></div>';
+      return html;
     }
 
     function addPointsAndBubbles($imgContainer, labelmakerPoints) {
+      var html = '';
       labelmakerPoints.forEach(function (point) {
-        $imgContainer
-        .append('<div class="labelmaker-point" style="top:' + point.top +'%; left:' + point.left + '%;"></div>')
-        .append('<div class="labelmaker-bubble"><div class="labelmaker-bubble-inner">' + point.text + '</div></div>');
+        html += template(point);
       });
+      $imgContainer.append(html);
     }
 
     function removePointsAndBubbles($imgContainer) {
@@ -111,31 +128,29 @@
       $imgContainer.width(imgWidth).height(imgHeight);
 
       $pointsContainer.hide();
-      var labelmakerPoints = getLabelmakerPoints($pointsContainer);
+      var labelmakerPoints = getPoints();
       addPointsAndBubbles($imgContainer, labelmakerPoints);
 
       function actionOnPointActive(e, that) {
         e.stopPropagation();
         e.preventDefault();
         hideAllBubbles($imgContainer);
-        $bubble = $(that).next();
-        $point = $(that);
+        var $bubble = $(that).next();
+        var $point = $(that);
         showBubble($point, $bubble, imgWidth, imgHeight);
       }
 
+      $imgContainer.on('click touchstart focus', '.labelmaker-point', function(e) {
+        actionOnPointActive(e, this);
+      });
+
       if (settings.showOn === 'hover') {
         $imgContainer.on({
-            'click touchstart mouseenter': function(e) {
+            'mouseenter': function(e) {
                 actionOnPointActive(e, this);
             },
-            mouseleave: function(e) {
-                hideAllBubbles($imgContainer);
-            }
+            'mouseleave': hideAllBubbles.bind(null, $imgContainer)
         }, '.labelmaker-point');
-      } else {
-        $imgContainer.on('click touchstart', '.labelmaker-point', function(e) {
-          actionOnPointActive(e, this);
-        });
       }
 
       $imgContainer.on('click touchstart', '.labelmaker-bubble', function(e) {
@@ -152,7 +167,7 @@
         }
       });
 
-      function actionOnWinowResize() {
+      function actionOnWindowResize() {
         $imgContainer.removeAttr('style');
         imgWidth = $img.width();
         imgHeight = $img.height();
@@ -164,7 +179,7 @@
       var resizeTimeout;
       $(window).on('resize orientationChanged', function() {
         clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(actionOnWinowResize, 100);
+        resizeTimeout = setTimeout(actionOnWindowResize, 100);
       });
     }
 
@@ -179,4 +194,4 @@
       });
     });
   };
-}(jQuery));
+}(window.jQuery));
