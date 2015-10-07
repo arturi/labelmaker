@@ -33,6 +33,10 @@
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
+.labelmaker-point:focus {
+  outline: none;
+}
+
 .labelmaker-bubble,
 .labelmaker-bubble-inner {
   max-width: 220px;
