@@ -18,7 +18,7 @@
           top: $(this).data('top'),
           left: $(this).data('left'),
           text: $(this).html()
-        };
+        }
       }).toArray();
     }
 

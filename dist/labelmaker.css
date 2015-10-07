@@ -5,6 +5,7 @@
 .labelmaker-container {
   position: relative;
   overflow: hidden;
+  margin: auto;
 }
 
   .labelmaker-container img {
@@ -77,6 +78,7 @@
   content: '';
   height: 12px;
   border-radius: 6px;
+  background: -webkit-linear-gradient(top, rgb(44, 44, 44) 0%, rgb(44, 44, 44) 50%, rgba(55, 35, 18, 0) 100%);
   position: absolute;
   top: 0;
   left: 0;
@@ -87,6 +89,7 @@
   content: '';
   height: 12px;
   border-radius: 6px;
+  background: -webkit-linear-gradient(bottom, rgb(44, 44, 44) 0%, rgb(44, 44, 44) 50%, rgba(55, 35, 18, 0) 100%);
   position: absolute;
   bottom: 0;
   left: 0;
